@@ -28,7 +28,7 @@ impl PipedStderr {
 mod tests {
     use crate::pipe::stderr::PipedStderr;
     use crate::Capture;
-    use std::io::{set_output_capture, BufRead, BufReader, Read};
+    use std::io::{set_output_capture, BufRead, BufReader};
 
     #[test]
     fn test_stderr() {

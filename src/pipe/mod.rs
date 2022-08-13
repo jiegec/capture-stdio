@@ -1,4 +1,3 @@
-use crate::Capture;
 use os_pipe::{PipeReader, PipeWriter};
 use std::{
     io::Error,
