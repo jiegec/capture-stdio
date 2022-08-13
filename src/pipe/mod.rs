@@ -1,3 +1,5 @@
+//! Intercept stdio via `pipe`-then-`dup` method
+//!
 use os_pipe::{PipeReader, PipeWriter};
 use std::{
     io::Error,
@@ -58,7 +60,7 @@ impl Drop for PipedFd {
     }
 }
 
-pub fn swap_fd(fd: RawFd, target: RawFd) -> RawFd {
+fn swap_fd(fd: RawFd, target: RawFd) -> RawFd {
     unsafe {
         let orig_stdin = libc::dup(target as i32);
         libc::close(target as i32);

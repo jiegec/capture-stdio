@@ -1,8 +1,11 @@
+//! Intercept [std::io::Stderr]
+
 use super::PipedFd;
 use crate::Capture;
 use os_pipe::PipeReader;
 use std::io::Error;
 
+/// Intercept stderr
 pub struct PipedStderr {
     internal: PipedFd,
 }
@@ -19,6 +22,7 @@ impl Capture for PipedStderr {
 }
 
 impl PipedStderr {
+    /// Get reader of pipe
     pub fn get_reader(&mut self) -> &mut PipeReader {
         &mut self.internal.reader
     }

@@ -1,3 +1,5 @@
+//! Wrapper of `std::io::set_output_capture`
+
 use std::{
     io::{set_output_capture, Error},
     sync::{Arc, Mutex},
@@ -5,6 +7,9 @@ use std::{
 
 use crate::Capture;
 
+/// Wrap `std::io::set_output_capture`
+///
+/// You can use it to capture outputs of [print!] and [eprint!].
 pub struct OutputCapture {
     local_stream: Arc<Mutex<Vec<u8>>>,
     original: Option<Arc<Mutex<Vec<u8>>>>,
@@ -31,6 +36,7 @@ impl Capture for OutputCapture {
 }
 
 impl OutputCapture {
+    /// Get the captured output
     pub fn get_output(&self) -> Arc<Mutex<Vec<u8>>> {
         self.local_stream.clone()
     }

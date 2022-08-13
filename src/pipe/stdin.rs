@@ -1,8 +1,11 @@
+//! Intercept [std::io::Stdin]
+
 use super::PipedFd;
 use crate::Capture;
 use os_pipe::PipeWriter;
 use std::io::Error;
 
+/// Intercept stdin
 pub struct PipedStdin {
     internal: PipedFd,
 }
@@ -19,6 +22,7 @@ impl Capture for PipedStdin {
 }
 
 impl PipedStdin {
+    /// Get writer of pipe
     pub fn get_writer(&mut self) -> &mut PipeWriter {
         &mut self.internal.writer
     }
