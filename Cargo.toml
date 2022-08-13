@@ -1,7 +1,12 @@
 [package]
 name = "capture-stdio"
 version = "0.1.0"
+authors = ["Jiajie Chen <c@jia.je>"]
 edition = "2021"
+description = "Capture stdin/out/err of the current process"
+repository = "https://github.com/jiegec/capture-stdio"
+readme = "README.md"
+license = "MIT"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
