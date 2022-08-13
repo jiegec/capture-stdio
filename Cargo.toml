@@ -1,6 +1,6 @@
 [package]
 name = "capture-stdio"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Jiajie Chen <c@jia.je>"]
 edition = "2021"
 description = "Capture stdin/out/err of the current process"
