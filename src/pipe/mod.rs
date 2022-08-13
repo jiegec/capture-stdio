@@ -5,10 +5,15 @@ use std::{
     os::{unix::io::RawFd, unix::prelude::AsRawFd},
 };
 
+pub mod stderr;
 pub mod stdin;
 pub mod stdout;
 
-struct PipedInternal {
+pub use stderr::PipedStderr;
+pub use stdin::PipedStdin;
+pub use stdout::PipedStdout;
+
+struct PipedFd {
     reader: PipeReader,
     writer: PipeWriter,
     original: RawFd,
@@ -16,7 +21,7 @@ struct PipedInternal {
     restored: bool,
 }
 
-impl PipedInternal {
+impl PipedFd {
     fn capture(target: RawFd, is_stdin: bool) -> Result<Self, Error> {
         let (reader, writer) = os_pipe::pipe()?;
         let original = if is_stdin {
@@ -46,7 +51,7 @@ impl PipedInternal {
     }
 }
 
-impl Drop for PipedInternal {
+impl Drop for PipedFd {
     fn drop(&mut self) {
         if !self.restored {
             self.restore();

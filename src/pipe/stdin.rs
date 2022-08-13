@@ -1,15 +1,15 @@
-use super::PipedInternal;
+use super::PipedFd;
 use crate::Capture;
 use os_pipe::PipeWriter;
 use std::io::Error;
 
 pub struct PipedStdin {
-    internal: PipedInternal,
+    internal: PipedFd,
 }
 
 impl Capture for PipedStdin {
     fn capture() -> Result<Self, Error> {
-        let internal = PipedInternal::capture(0, true)?;
+        let internal = PipedFd::capture(0, true)?;
         Ok(Self { internal })
     }
 
